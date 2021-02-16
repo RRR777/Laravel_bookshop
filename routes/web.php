@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\User\BookController as UserBookController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,3 +18,17 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+//Route::resource('books', App\Http\Controllers\User\BookController::class);
+Auth::routes();
+
+Route::group(['middleware' => 'auth'], function () {
+    Route::get('/dashboard', function () {
+        return view('dashboard');
+    })->name('dashboard');
+
+    Route::group(['prefix' => 'user', 'as' => 'user.'], function () {
+        Route::resource('books', UserBookController::class);
+    });
+});
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
