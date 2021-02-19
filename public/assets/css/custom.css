@@ -1,0 +1,23 @@
+.col-2 #content{
+    width:100%;
+}
+
+@media only screen and (min-width: 768px) and (max-width: 979px) {
+.col-2 #content{width: 100% !important;}
+}
+
+.col-lg-3 {
+    width: 20%;
+}
+
+.input-lg {
+    border-radius: 0;
+}
+
+#search {
+    margin-top: 10px;
+}
+
+#top-links {
+    margin-top: 15px;
+}
