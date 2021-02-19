@@ -55,7 +55,7 @@ class BookController extends Controller
      */
     public function store(StoreBookRequest $request)
     {
-        $book = auth()->user()->books()->create($request->validated());
+        $book = Book::create($request->validated());
 
         $book->genres()->attach($request->input('genres'));
 

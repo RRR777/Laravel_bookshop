@@ -9,22 +9,16 @@
 <meta name="description" content="e-commerce site well design with responsive view." />
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-<link href="css/bootstrap.min.css" rel="stylesheet" media="screen" />
+<link href="{{ asset('assets/css/bootstrap.min.css') }}" rel="stylesheet">
 <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
-<link href="javascript/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+<link href="{{ asset('assets/css/font-awesome/css/font-awesome.min.css') }}" rel="stylesheet">
 <link href='https://fonts.googleapis.com/css?family=Work+Sans:400,300,100,200,500,900,800,700,600' rel='stylesheet' type='text/css'>
-<link href="css/stylesheet.css" rel="stylesheet">
-<link href="css/responsive.css" rel="stylesheet">
-<link href="javascript/owl-carousel/owl.carousel.css" type="text/css" rel="stylesheet" media="screen" />
-<link href="javascript/owl-carousel/owl.transitions.css" type="text/css" rel="stylesheet" media="screen" />
-<script src="javascript/jquery-2.1.1.min.js" type="text/javascript"></script>
-<script src="javascript/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
-<script type="text/javascript" src="javascript/template_js/jstree.min.js"></script>
-<script type="text/javascript" src="javascript/template_js/template.js"></script>
-<script src="javascript/common.js" type="text/javascript"></script>
-<script src="javascript/global.js" type="text/javascript"></script>
-<script src="javascript/owl-carousel/owl.carousel.min.js" type="text/javascript"></script>
-<link href="css/custom.css" rel="stylesheet" />
+<link href="{{ asset('assets/css/stylesheet.css') }}" rel="stylesheet">
+<link href="{{ asset('assets/css/responsive.css') }}" rel="stylesheet">
+<link href="{{ asset('assets/js/owl-carousel/owl.carousel.css') }}" rel="stylesheet" />
+<link href="{{ asset('assets/js/owl-carousel/owl.transitions.css') }}" rel="stylesheet" />
+<link href="{{ asset('assets/css/custom.css') }}" rel="stylesheet" />
+
 </head>
 <body class="category col-2 left-col">
 <div class="preloader loader" style="display: block;"> <img src="image/loader.gif"  alt="#"/></div>
@@ -34,115 +28,31 @@
             <div class="row">
                 <div class="col-sm-12">
                     <div class="top-left pull-left">
-                        <div class="language">
-                            <form action="#" method="post" enctype="multipart/form-data" id="language">
-                                <div class="btn-group">
-                                    <button class="btn btn-link dropdown-toggle" data-toggle="dropdown" aria-expanded="false"> <img src="image/flags/gb.png" alt="English" title="English"> <i class="fa fa-caret-down"></i></button>
-                                    <ul class="dropdown-menu">
-                                        <li><a href="#"><img src="image/flags/lb.png" alt="Arabic" title="Arabic"> Arabic</a></li>
-                                        <li><a href="#"><img src="image/flags/gb.png" alt="English" title="English"> English</a></li>
-                                    </ul>
-                                </div>
-                            </form>
-                        </div>
-                        <div class="currency">
-                            <form action="#" method="post" enctype="multipart/form-data" id="currency">
-                                <div class="btn-group">
-                                    <button class="btn btn-link dropdown-toggle" data-toggle="dropdown"> <strong>$</strong> <i class="fa fa-caret-down"></i> </button>
-                                    <ul class="dropdown-menu">
-                                        <li>
-                                            <button class="currency-select btn btn-link btn-block" type="button" name="EUR">€ Euro</button>
-                                        </li>
-                                        <li>
-                                            <button class="currency-select btn btn-link btn-block" type="button" name="GBP">£ Pound Sterling</button>
-                                        </li>
-                                        <li>
-                                            <button class="currency-select btn btn-link btn-block" type="button" name="USD">$ US Dollar</button>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </form>
-                        </div>
+                      <div id="search" class="input-group">
+                        <input type="text" name="search" value="" placeholder="Search" class="form-control input-lg" />
+                      </div>
                     </div>
                     <div class="top-right pull-right">
                         <div id="top-links" class="nav pull-right">
                             <ul class="list-inline">
+                              @if (Route::has('login'))
                                 <li class="dropdown"><a href="#" title="My Account" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> <span>My Account</span> <span class="caret"></span></a>
                                     <ul class="dropdown-menu dropdown-menu-right">
-                                        <li><a href="register.html">Register</a></li>
-                                        <li><a href="login.html">Login</a></li>
+                                      @auth
+                                        <li><a href="{{ url('/user/books') }}">My Books</a></li>
+                                      @else
+                                          <li><a href="{{ route('login') }}">Login</a></li>
+                                        @if (Route::has('register'))
+                                          <li><a href="{{ route('register') }}">Register</a></li>
+                                        @endif
+                                      @endauth
                                     </ul>
                                 </li>
-                                <li><a href="#" id="wishlist-total" title="Wish List (0)"><i class="fa fa-heart"></i> <span>Wish List</span><span> (0)</span></a></li>
+                              @endif
                             </ul>
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
-    </div>
-    <div class="container">
-        <div class="header-inner">
-            <div class="col-sm-4 col-xs-6 header-left">
-                <div class="shipping">
-                    <div class="shipping-img"></div>
-                    <div class="shipping-text">+91(000)1234-1234<span class="shipping-detail">Week From 9:00am To 7:00pm</span></div>
-                </div>
-            </div>
-            <div class="col-sm-4 col-xs-6 header-middle">
-                <div class="header-middle-top">
-                    <div id="logo"> <a href="index.html"><img src="image/logo.png" title="E-Commerce" alt="E-Commerce" class="img-responsive" /></a> </div>
-                </div>
-            </div>
-            <div class="col-sm-4 col-xs-6 header-right">
-                <div id="cart" class="btn-group btn-block">
-                    <button type="button" class="btn btn-inverse btn-block btn-lg dropdown-toggle cart-dropdown-button"><span id="cart-total">1 item(s) - $254.00</span><i class="fa fa-caret-down"></i></button>
-                    <ul class="dropdown-menu pull-right cart-dropdown-menu">
-                        <li>
-                            <table class="table table-striped">
-                                <tbody>
-                                    <tr>
-                                        <td class="text-center"><a href="#"><img class="img-thumbnail" title="lorem ippsum dolor dummy" alt="lorem ippsum dolor dummy" src="image/product/7product50x59.jpg"></a></td>
-                                        <td class="text-left"><a href="#">lorem ippsum dolor dummy</a></td>
-                                        <td class="text-right">x 1</td>
-                                        <td class="text-right">$254.00</td>
-                                        <td class="text-center"><button class="btn btn-danger btn-xs" title="Remove" type="button"><i class="fa fa-times"></i></button></td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </li>
-                        <li>
-                            <div>
-                                <table class="table table-bordered">
-                                    <tbody>
-                                        <tr>
-                                            <td class="text-right"><strong>Sub-Total</strong></td>
-                                            <td class="text-right">$210.00</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="text-right"><strong>Eco Tax (-2.00)</strong></td>
-                                            <td class="text-right">$2.00</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="text-right"><strong>VAT (20%)</strong></td>
-                                            <td class="text-right">$42.00</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="text-right"><strong>Total</strong></td>
-                                            <td class="text-right">$254.00</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                                <p class="text-right"> <span class="btn-viewcart"><a href="cart.html"><strong><i class="fa fa-shopping-cart"></i> View Cart</strong></a></span> <span class="btn-checkout"><a href="checkout.html"><strong><i class="fa fa-share"></i> Checkout</strong></a></span> </p>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-                <div id="search" class="input-group">
-                    <input type="text" name="search" value="" placeholder="Search" class="form-control input-lg" />
-                    <span class="input-group-btn">
-                    <button type="button" class="btn btn-default btn-lg"><i class="fa fa-search"></i></button>
-                    </span> </div>
             </div>
         </div>
     </div>
@@ -179,10 +89,6 @@
     </div>
 </nav>
 <div class="container">
-  <ul class="breadcrumb">
-    <li><a href="index.html"><i class="fa fa-home"></i></a></li>
-    <li><a href="category.html">Electronics</a></li>
-  </ul>
   <div class="row">
     <div id="content" class="col-sm-9">
       <div class="category-page-wrapper">
@@ -190,34 +96,6 @@
           <div class="btn-group btn-list-grid">
             <button type="button" id="list-view" class="btn btn-default list" data-toggle="tooltip" title="List"><i class="fa fa-th-list"></i></button>
             <button type="button" id="grid-view" class="btn btn-default grid" data-toggle="tooltip" title="Grid"><i class="fa fa-th"></i></button>
-          </div>
-          <a href="#" id="compare-total">Product Compare (0)</a> </div>
-        <div class="col-md-1 text-right page-wrapper">
-          <label class="control-label" for="input-limit">Show :</label>
-          <div class="limit">
-            <select id="input-limit" class="form-control">
-              <option value="8" selected="selected">8</option>
-              <option value="25">25</option>
-              <option value="50">50</option>
-              <option value="75">75</option>
-              <option value="100">100</option>
-            </select>
-          </div>
-        </div>
-        <div class="col-md-2 text-right sort-wrapper">
-          <label class="control-label" for="input-sort">Sort By :</label>
-          <div class="sort-inner">
-            <select id="input-sort" class="form-control">
-              <option value="ASC" selected="selected">Default</option>
-              <option value="ASC">Name (A - Z)</option>
-              <option value="DESC">Name (Z - A)</option>
-              <option value="ASC">Price (Low &gt; High)</option>
-              <option value="DESC">Price (High &gt; Low)</option>
-              <option value="DESC">Rating (Highest)</option>
-              <option value="ASC">Rating (Lowest)</option>
-              <option value="ASC">Model (A - Z)</option>
-              <option value="DESC">Model (Z - A)</option>
-            </select>
           </div>
         </div>
       </div>
@@ -985,6 +863,16 @@
     </div>
   </div>
 </div>
+
+<!-- Scripts -->
+<script src="{{ asset('assets/js//jquery-2.1.1.min.js') }}" ></script>
+<script src="{{ asset('assets/js/bootstrap/js/bootstrap.min.js') }}" ></script>
+<script src="{{ asset('assets/js/template_js/jstree.min.js') }}" ></script>
+<script src="{{ asset('assets/js/template_js/template.js') }}" ></script>
+<script src="{{ asset('assets/js/common.js') }}" ></script>
+<script src="{{ asset('assets/js/global.js') }}" ></script>
+<script src="{{ asset('assets/js/owl-carousel/owl.carousel.min.js') }}" ></script>
+
 </body>
 </html>
 

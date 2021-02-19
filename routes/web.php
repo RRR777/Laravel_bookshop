@@ -15,10 +15,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-//Route::resource('books', App\Http\Controllers\User\BookController::class);
+Route::get('/', [App\Http\Controllers\GuestController::class, 'index'])->name('welcome');
+
 Auth::routes();
 
 Route::group(['middleware' => 'auth'], function () {
