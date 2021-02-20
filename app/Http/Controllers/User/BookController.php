@@ -66,6 +66,10 @@ class BookController extends Controller
             $book->authors()->attach($author->id);
         }
 
+        //$fileName = time().'.'.$request->file->extension();
+
+        //$request->file->move(public_path('uploads'), $fileName);
+
         return redirect()->route('user.books.index')
             ->with('success', 'Book created successfully.');
     }

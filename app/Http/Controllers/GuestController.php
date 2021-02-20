@@ -10,4 +10,9 @@ class GuestController extends Controller
     {
         return view('welcome');
     }
+
+    public function show($id)
+    {
+        return view('showbook');
+    }
 }

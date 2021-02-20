@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [App\Http\Controllers\GuestController::class, 'index'])->name('welcome');
+Route::get('/books/{id}', [App\Http\Controllers\GuestController::class, 'show'])->name('showbook');
 
 Auth::routes();
 
