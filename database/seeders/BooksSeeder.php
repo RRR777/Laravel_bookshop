@@ -16,11 +16,18 @@ class BooksSeeder extends Seeder
      */
     public function run()
     {
-        User::create([
-            'name' => 'user',
-            'email' => 'user@user.com',
-            'password' => 'user123'
-        ]);
+        User::create(
+            [
+                'name' => 'admin',
+                'email' => 'admin@admin.com',
+                'password' => bcrypt('admin')
+            ],
+            [
+                'name' => 'user',
+                'email' => 'user@user.com',
+                'password' => bcrypt('user')
+            ]
+        );
 
         Author::updateOrCreate(['name' => 'John Ericson']);
         $book1 = Book::create([

@@ -34,8 +34,8 @@
         </tr>
         @foreach ($books as $book)
             <tr>
-                <td>{{ ++$i }}</td>
-                <td><img src="{{asset('images/').'/'.$book->cover}}" width=40 hight=50></td>
+                <td></td>
+                <td><img src="{{ $book->cover ? $book->cover->getUrl('cover') : "" }}" width=40 hight=50 /></td>
                 <td>{{ $book->title }}</td>
                 <td>
                     @foreach ($book->authors as $author)

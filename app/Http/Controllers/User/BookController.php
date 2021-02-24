@@ -21,7 +21,7 @@ class BookController extends Controller
         //$books = auth()->user()->books()->latest('id')->paginate(25);
 
         //$books = Book::with('authors', 'genres')->latest('id')->approved()->paginate();
-        $books = Book::with('authors', 'genres')
+        $books = Book::with('authors', 'genres', 'media')
             ->when(request('search'), function ($query) {
                 $search = request('search');
                 $query->where('title', 'LIKE', "%(search)%")
@@ -30,8 +30,9 @@ class BookController extends Controller
             ->latest('id')
             ->paginate();
 
-        return view('user.books.index', compact('books'))
-            ->with('i', (request()->input('page', 1) - 1) * 5);
+
+        return view('user.books.index', compact('books'));
+        //->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
     /**
@@ -55,20 +56,18 @@ class BookController extends Controller
      */
     public function store(StoreBookRequest $request)
     {
-        $book = Book::create($request->validated());
+        $book = auth()->user()->books()->create($request->validated());
 
         $book->genres()->attach($request->input('genres'));
 
         $authors = explode(",", $request->input('authors'));
 
+        $book->attachCover($request->file('cover'));
+
         foreach ($authors as $authorName) {
             $author = Author::updateOrCreate(['name' =>$authorName]);
             $book->authors()->attach($author->id);
         }
-
-        //$fileName = time().'.'.$request->file->extension();
-
-        //$request->file->move(public_path('uploads'), $fileName);
 
         return redirect()->route('user.books.index')
             ->with('success', 'Book created successfully.');

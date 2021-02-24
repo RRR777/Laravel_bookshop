@@ -22,25 +22,24 @@
             </ul>
         </div>
     @endif
-    <form action="{{ route('user.books.store') }}" method="POST" >
+    <form action="{{ route('user.books.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
-
+        <input type="hidden" id="user_id" name="user_id" value={{ Auth::user()->id }}>
         <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
-                    <strong>Title*</strong>
-                    <input type="text" name="title" class="form-control" placeholder="Title">
+                    <strong>{{ __('Title*') }}</strong>
+                    <input type="text" name="title" class="form-control" value="{{old('title')}}" placeholder="Title">
                 </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
-                    <strong>Authors (seperated by comma)*:</strong>
+                    <strong>{{ __('Authors (seperated by comma)*') }}:</strong>
                     <input type="text" name="authors" class="form-control" placeholder="Authors">
                 </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
-                    <strong>Genres*</strong>
                     <select class="form-select col-xs-12 col-sm-12 col-md-12" multiple name="genres[]">
                         @foreach ($genres as $genre)
                             <option value="{{ $genre->id }}">{{ $genre->name }}</option>
@@ -50,28 +49,25 @@
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
-                    <strong>Description*</strong>
-                    <textarea class="form-control" style="height:50px" name="description"
+                    <strong>{{ __('Description*') }}</strong>
+                    <textarea class="form-control" style="height:50px" value="{{old('description')}}" name="description"
                         placeholder="Description"></textarea>
                 </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
-                    <strong>Cover*</strong>
-                    <div class="custom-file">
-                        <input type="file" name="cover" class="custom-file-input" id="cover" placeholder="Cover">
-                        <label class="custom-file-label" for="cover">Choose file</label>
-                    </div>
-                </div>
+                    <label for="cover"><strong>{{ __('Cover*') }}</strong></label>
+                    <input type="file" name="cover" class="form-control-file" id="cover">
+                  </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
-                    <strong>Price*</strong>
-                    <input type="number" name="price" class="form-control" placeholder="Price">
+                    <strong>{{ __('Price*') }}</strong>
+                    <input type="number" name="price" class="form-control" value="{{old('price')}}" placeholder="Price">
                 </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12 text-center">
-                <button type="submit" class="btn btn-primary">Submit</button>
+                <button type="submit" class="btn btn-primary">{{ __('Save') }}</button>
             </div>
         </div>
 

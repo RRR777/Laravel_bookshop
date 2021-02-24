@@ -96,6 +96,12 @@
           <div class="thumbnails">
             <div><a class="thumbnail fancybox" href="{{ asset('image/product/product1.jpg')}}" title="lorem ippsum dolor dummy">
               <img src="{{ asset('image/product/product1.jpg')}}" title="lorem ippsum dolor dummy" alt="lorem ippsum dolor dummy" /></a>
+
+
+              <img alt="{{ $book->name }}" class="lg:w-1/3 w-full h-96 object-cover object-center rounded"
+                     src="{{ asset($book->cover->getUrl('cover')) }}">
+
+
             </div>
           </div>
         </div>
