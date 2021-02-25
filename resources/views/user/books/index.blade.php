@@ -27,8 +27,6 @@
             <th>Authors</th>
             <th>Genre</th>
             <th>Is new</th>
-            <th>Status</th>
-
             <th>Price</th>
             <th width="280px">Action</th>
         </tr>
@@ -48,7 +46,6 @@
                     @endforeach
                 </td>
                 <td>{{ $book->is_new ? "New" : "" }}</td>
-                <td>{{ $book->is_approved ? "Approved" : "Pending" }}</td>
                 <td>{{ $book->price }} Eur</td>
                 <td>
                     <form action="{{ route('user.books.destroy', $book->id) }}" method="POST">

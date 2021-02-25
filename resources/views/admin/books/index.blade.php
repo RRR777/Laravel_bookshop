@@ -48,7 +48,19 @@
                     @endforeach
                 </td>
                 <td>{{ $book->is_new ? "New" : "" }}</td>
-                <td>{{ $book->is_approved ? "Approved" : "Pending" }}</td>
+                <td>
+                    @if ($book->approved_at)
+                        {{ __('Approved - ').date('Y-m-d', strtotime($book->approved_at))}}
+                    @else
+                        <form action="{{ route('admin.books.update', $book->id) }}" method="POST">
+                            @csrf
+                            @method('PUT')
+                            <div class="col-xs-12 col-sm-12 col-md-12 text-center">
+                                <button type="submit" class="btn btn-primary">{{ __('Approve') }}</button>
+                            </div>
+                        </form>
+                    @endif
+                </td>
                 <td>{{ $book->price }} Eur</td>
                 <td>
                     <form action="{{ route('user.books.destroy', $book->id) }}" method="POST">

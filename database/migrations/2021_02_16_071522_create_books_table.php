@@ -21,7 +21,7 @@ class CreateBooksTable extends Migration
             $table->string('cover')->nullable();
             $table->integer('price');
             $table->integer('discount')->default(0);
-            $table->string('is_approved')->default(false);
+            $table->timestamp('approved_at')->nullable();
             $table->timestamps();
         });
     }

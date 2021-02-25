@@ -26,7 +26,8 @@ class Book extends Model implements HasMedia
         'cover',
         'price',
         'discount',
-        'status'];
+        'approved_at'
+    ];
 
     public function authors()
     {
@@ -45,7 +46,7 @@ class Book extends Model implements HasMedia
 
     public function scopeApproved($query)
     {
-        return $query->where('is_approved', '1');
+        return $query->where('is_approved', '!=', null);
     }
 
     public function getIsNewAttribute()

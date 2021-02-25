@@ -27,4 +27,19 @@ class BookController extends Controller
 
         return view('admin.books.index', compact('books'));
     }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Models\Book  $book
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, Book $book)
+    {
+        $book->update(['approved_at' => now()]);
+
+        return redirect()->route('admin.books.index')
+            ->with('success', 'Book approved successfully');
+    }
 }

@@ -20,7 +20,6 @@ class BooksSeeder extends Seeder
             'user_id' => 1,
             'title' => 'Hakingas',
             'cover' => 'book1.jpg',
-            'is_approved' => false,
             'description' => 'Programų kodo narstymo menas',
             'price' => '20',
             'discount' => '0'
@@ -34,7 +33,6 @@ class BooksSeeder extends Seeder
             'user_id' => 1,
             'title' => 'Apsauga nuo Hakerių',
             'cover' => 'book2.jpg',
-            'is_approved' => false,
             'description' => 'Tinklo saugumo palaikymas',
             'price' => '30',
             'discount' => '0'
@@ -48,7 +46,6 @@ class BooksSeeder extends Seeder
             'user_id' => 1,
             'title' => 'Kafka pakrantėjė',
             'cover' => 'book3.jpg',
-            'is_approved' => true,
             'description' => 'Baltos lankos',
             'price' => '15',
             'discount' => '0'
@@ -61,7 +58,6 @@ class BooksSeeder extends Seeder
             'user_id' => 1,
             'title' => 'Knygą gali parašyti bet kas',
             'cover' => 'book4.jpg',
-            'is_approved' => false,
             'description' => 'Aprašymas',
             'price' => '20',
             'discount' => '0'
@@ -74,7 +70,6 @@ class BooksSeeder extends Seeder
             'user_id' => 1,
             'title' => '1984',
             'cover' => 'book5.jpg',
-            'is_approved' => true,
             'description' => 'Perskaityk',
             'price' => '27',
             'discount' => '0'
