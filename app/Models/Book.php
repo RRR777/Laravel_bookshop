@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\Image\Manipulations;
@@ -66,5 +67,14 @@ class Book extends Model implements HasMedia
     {
         $this->addMediaConversion('cover')
               ->fit(Manipulations::FIT_CONTAIN, 330, 384);
+    }
+
+    protected static function booted()
+    {
+        if (auth()->check() && !auth()->user()->is_admin) {
+            static::addGlobalScope('user', function (Builder $builder) {
+                $builder->where('user_id', '=', auth()->id());
+            });
+        }
     }
 }

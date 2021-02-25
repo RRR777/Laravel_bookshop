@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\User\BookController as UserBookController;
+use App\Http\Controllers\Admin\BookController as AdminBookController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -28,6 +29,15 @@ Route::group(['middleware' => 'auth'], function () {
     Route::group(['prefix' => 'user', 'as' => 'user.'], function () {
         Route::resource('books', UserBookController::class);
     });
+
+    // Admin routes
+    Route::group(['middleware' => 'is_admin'], function () {
+        Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
+            Route::resource('books', AdminBookController::class);
+        });
+    });
 });
+
+
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

@@ -4,7 +4,6 @@ namespace Database\Seeders;
 
 use App\Models\Author;
 use App\Models\Book;
-use App\Models\User;
 use Illuminate\Database\Seeder;
 
 class BooksSeeder extends Seeder
