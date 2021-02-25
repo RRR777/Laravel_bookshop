@@ -24,7 +24,6 @@
     @endif
     <form action="{{ route('user.books.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
-        <input type="hidden" id="user_id" name="user_id" value={{ Auth::user()->id }}>
         <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">

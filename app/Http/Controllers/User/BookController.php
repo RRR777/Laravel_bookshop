@@ -18,10 +18,7 @@ class BookController extends Controller
      */
     public function index()
     {
-        //$books = auth()->user()->books()->latest('id')->paginate(25);
-
-        //$books = Book::with('authors', 'genres')->latest('id')->approved()->paginate();
-        $books = Book::with('authors', 'genres', 'media')
+        $books = auth()->user()->books()->with('authors', 'genres', 'media')
             ->when(request('search'), function ($query) {
                 $search = request('search');
                 $query->where('title', 'LIKE', "%(search)%")
