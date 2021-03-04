@@ -50,7 +50,7 @@
                 <td>{{ $book->is_new ? "New" : "" }}</td>
                 <td>
                     @if ($book->approved_at)
-                        {{ __('Approved - ').date('Y-m-d', strtotime($book->approved_at))}}
+                        {{ __('Approved - ').$book->approved_at }}
                     @else
                         <form action="{{ route('admin.books.update', $book->id) }}" method="POST">
                             @csrf

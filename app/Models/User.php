@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use App\Models\Book;
+use Carbon\Carbon;
 
 class User extends Authenticatable
 {
@@ -42,10 +43,21 @@ class User extends Authenticatable
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
+        // 'birthday' => 'datetime:Y-m',
     ];
 
     public function books()
     {
         return $this->hasMany(Book::class);
     }
+
+    // public function getBirthdayAttribute($value)
+    // {
+    //     return Carbon::parse($value)->format('Y-m-d');
+    // }
+
+    // public function setBirthdayAttribute($value)
+    // {
+    //     $this->attributes['birthday'] = Carbon::createFromFormat('m/d/Y', $value)->format('Y-m-d');
+    // }
 }
