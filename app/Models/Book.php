@@ -71,14 +71,14 @@ class Book extends Model implements HasMedia
               ->fit(Manipulations::FIT_CONTAIN, 330, 384);
     }
 
-    protected static function booted()
-    {
-        if (auth()->check() && !auth()->user()->is_admin) {
-            static::addGlobalScope('user', function (Builder $builder) {
-                $builder->where('user_id', '=', auth()->id());
-            });
-        }
-    }
+    // protected static function booted()
+    // {
+    //     if (auth()->check() && !auth()->user()->is_admin) {
+    //         static::addGlobalScope('user', function (Builder $builder) {
+    //             $builder->where('user_id', '=', auth()->id());
+    //         });
+    //     }
+    // }
 
     public function getApprovedAtAttribute($value)
     {
