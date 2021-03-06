@@ -84,48 +84,46 @@
       </div>
       <br />
 
-
-
-
       <div class="grid-list-wrapper">
-        @foreach ($books as $book)
-        <div class="product-layout product-list col-xs-12">
-          <div class="product-thumb">
-            <div class="image product-imageblock"> <a href="product.html"> <img src="{{ $book->cover ? $book->cover->getUrl('cover') : "https://via.placeholder.com/217x384.png?text=Book+photo" }}" alt="women's clothing stores" title="lorem ippsum dolor dummy" class="img-responsive" /> </a>
+        @forelse ($books as $book)
+          <div class="product-layout product-list col-xs-12">
+            <div class="product-thumb">
+              <div class="image product-imageblock"> <a href="product.html"> <img src="{{ $book->cover ? $book->cover->getUrl('cover') : "https://via.placeholder.com/217x384.png?text=Book+photo" }}" alt="women's clothing stores" title="lorem ippsum dolor dummy" class="img-responsive" /> </a>
+                <div class="button-group">
+                  <button type="button" class="wishlist" data-toggle="tooltip" title="Add to Wish List"><i class="fa fa-heart-o"></i></button>
+                  <button type="button" class="addtocart-btn">Add to Cart</button>
+                  <button type="button" class="compare" data-toggle="tooltip" title="Compare this Product"><i class="fa fa-exchange"></i></button>
+                </div>
+              </div>
+              <div class="caption product-detail">
+                <h4 class="product-name"> <a href="product.html" title="lorem ippsum dolor dummy"> {{ $book->title }} </a> </h4>
+                <p class="product-desc"> {{ $book->description }}</p>
+                <p class="price product-price"><span class="price-old">$272.00</span> ${{ $book->price }} <span class="price-tax">Ex Tax: $100.00</span> </p>
+                <div class="rating"> <span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i><i class="fa fa-star-o fa-stack-2x"></i></span> <span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i><i class="fa fa-star-o fa-stack-2x"></i></span> <span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i><i class="fa fa-star-o fa-stack-2x"></i></span> <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-2x"></i></span> <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-2x"></i></span> </div>
+              </div>
               <div class="button-group">
                 <button type="button" class="wishlist" data-toggle="tooltip" title="Add to Wish List"><i class="fa fa-heart-o"></i></button>
                 <button type="button" class="addtocart-btn">Add to Cart</button>
                 <button type="button" class="compare" data-toggle="tooltip" title="Compare this Product"><i class="fa fa-exchange"></i></button>
               </div>
             </div>
-            <div class="caption product-detail">
-              <h4 class="product-name"> <a href="product.html" title="lorem ippsum dolor dummy"> {{ $book->title }} </a> </h4>
-              <p class="product-desc"> {{ $book->description }}</p>
-              <p class="price product-price"><span class="price-old">$272.00</span> ${{ $book->price }} <span class="price-tax">Ex Tax: $100.00</span> </p>
-              <div class="rating"> <span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i><i class="fa fa-star-o fa-stack-2x"></i></span> <span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i><i class="fa fa-star-o fa-stack-2x"></i></span> <span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i><i class="fa fa-star-o fa-stack-2x"></i></span> <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-2x"></i></span> <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-2x"></i></span> </div>
-            </div>
-            <div class="button-group">
-              <button type="button" class="wishlist" data-toggle="tooltip" title="Add to Wish List"><i class="fa fa-heart-o"></i></button>
-              <button type="button" class="addtocart-btn">Add to Cart</button>
-              <button type="button" class="compare" data-toggle="tooltip" title="Compare this Product"><i class="fa fa-exchange"></i></button>
-            </div>
           </div>
-        </div>
-
-        @endforeach
-
+        @empty
+          {{ __('No books found') }}
+        @endforelse
 
       </div>
       <div class="category-page-wrapper">
-        <div class="result-inner">Showing 1 to 8 of 10 (2 Pages)</div>
-        <div class="pagination-inner">
+        {{-- <div class="result-inner">Showing 1 to 8 of 10 (2 Pages)</div> --}}
+        <div class="result-inner">{{ $books->links() }}</div>
+        {{-- <div class="pagination-inner">
           <ul class="pagination">
             <li class="active"><span>1</span></li>
             <li><a href="category.html">2</a></li>
             <li><a href="category.html">&gt;</a></li>
             <li><a href="category.html">&gt;|</a></li>
           </ul>
-        </div>
+        </div> --}}
       </div>
     </div>
   </div>
