@@ -19,6 +19,6 @@ class GenresSeeder extends Seeder
         Genre::create(['name' => 'Detectives']);
         Genre::create(['name' => 'Romance']);
 
-        Genre::factory()->count(10)->create();
+        $genres = Genre::factory()->count(6)->create();
     }
 }
