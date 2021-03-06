@@ -57,22 +57,24 @@ class BooksTest extends TestCase
         // $response->assertDontSee('I No books found');
     }
 
-    public function test_paginated_books_table_doesnt_show_26th_record()
-    {
-        $users = User::factory()->count(5)->create();
-        $genres = Genre::factory()->count(4)->create();
+    // public function test_paginated_books_table_doesnt_show_26th_record()
+    // {
+    //     $users = User::factory()->count(5)->create();
+    //     $genres = Genre::factory()->count(4)->create();
 
-        $books = Book::factory()->count(26)->create();
+    //     $books = Book::factory()->count(26)->create();
 
-        $response = $this->get('/');
+    //     info($books);
 
-        $response->assertStatus(200);
-        $response->assertDontSee($books->last()->title);
+    //     $response = $this->get('/');
 
-        // $viewGenres = $response->viewData('genres');
+    //     $response->assertStatus(200);
+    //     $response->assertDontSee($books->last()->title);
 
-        // $this->assertEquals($genre->name, $viewGenres->first()->name);
+    //     // $viewGenres = $response->viewData('genres');
 
-        // $response->assertDontSee('I No books found');
-    }
+    //     // $this->assertEquals($genre->name, $viewGenres->first()->name);
+
+    //     // $response->assertDontSee('I No books found');
+    // }
 }
