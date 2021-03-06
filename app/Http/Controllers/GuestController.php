@@ -16,7 +16,7 @@ class GuestController extends Controller
             $query->where('title', 'LIKE', "%(search)%")
             ->orwhere('authors.name', 'LIKE', "%(search)%");
         })
-        ->latest('id')
+        ->latest()
         ->paginate();
 
         $genres = Genre::all();
