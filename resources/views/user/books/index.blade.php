@@ -27,10 +27,11 @@
             <th>Authors</th>
             <th>Genre</th>
             <th>Is new</th>
+            <th>Is approved</th>
             <th>Price</th>
             <th width="280px">Action</th>
         </tr>
-        @foreach ($books as $book)
+        @forelse ($books as $book)
             <tr>
                 <td></td>
                 <td><img src="{{ $book->cover ? $book->cover->getUrl('cover') : "" }}" width=40 hight=50 /></td>
@@ -46,6 +47,13 @@
                     @endforeach
                 </td>
                 <td>{{ $book->is_new ? "New" : "" }}</td>
+                <td>
+                    @if ($book->is_approved)
+                        {{ __('Approved') }}
+                    @else
+                        {{ __('Pending') }}
+                    @endif
+                </td>
                 <td>{{ $book->price }} Eur</td>
                 <td>
                     <form action="{{ route('user.books.destroy', $book->id) }}" method="POST">
@@ -63,7 +71,11 @@
                     </form>
                 </td>
             </tr>
-        @endforeach
+        @empty
+            <tr>
+                <td colspan="9">{{ __('No books found') }}</td>
+            </tr>
+        @endforelse
     </table>
 
     {{ $books->links() }}

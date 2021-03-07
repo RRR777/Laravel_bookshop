@@ -49,8 +49,8 @@
                 </td>
                 <td>{{ $book->is_new ? "New" : "" }}</td>
                 <td>
-                    @if ($book->approved_at)
-                        {{ __('Approved - ').$book->approved_at }}
+                    @if ($book->is_approved)
+                        {{ __('Approved') }}
                     @else
                         <form action="{{ route('admin.books.update', $book->id) }}" method="POST">
                             @csrf

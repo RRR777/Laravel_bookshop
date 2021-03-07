@@ -16,6 +16,7 @@ class GuestController extends Controller
             $query->where('title', 'LIKE', "%(search)%")
             ->orwhere('authors.name', 'LIKE', "%(search)%");
         })
+        ->approved()
         ->latest()
         ->paginate();
 

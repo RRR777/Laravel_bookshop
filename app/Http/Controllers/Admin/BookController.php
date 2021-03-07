@@ -37,7 +37,7 @@ class BookController extends Controller
      */
     public function update(Request $request, Book $book)
     {
-        $book->update(['approved_at' => now()]);
+        $book->update(['is_approved' => true]);
 
         return redirect()->route('admin.books.index')
             ->with('success', 'Book approved successfully');

@@ -14,14 +14,12 @@ class UsersSeeder extends Seeder
      */
     public function run()
     {
-        User::create(
-            [
-                'name' => 'admin',
-                'email' => 'admin@admin.com',
-                'password' => bcrypt('admin'),
-                'is_admin' => 1
-            ]
-        );
+        User::create([
+            'name' => 'admin',
+            'email' => 'admin@admin.com',
+            'password' => bcrypt('admin'),
+            'is_admin' => 1
+        ]);
 
         User::create([
             'name' => 'user',
@@ -30,6 +28,6 @@ class UsersSeeder extends Seeder
             'is_admin' => 0
         ]);
 
-        $users = User::factory()->count(5)->create();
+        $users = User::factory()->count(2)->create();
     }
 }
